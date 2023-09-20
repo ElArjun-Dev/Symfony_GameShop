@@ -1,0 +1,27 @@
+{# on doit récupérer le base  #}
+{% extends 'base.html.twig' %}
+{# on peut redifinir le titre de la page #}
+{% block title %}Liste des jeux{% endblock %}
+{# On ouvre le bloxk body #}
+
+{% block body %}
+
+<h1 class="text-warning text-center my-4">{{title}}</h1>
+
+<div class="d-flex flex-wrap col-sm-10 mx-auto mt-5">
+    {% for game in games %}
+        <div class="card m-2" style="width: 18rem ; height: 35rem;">
+            <img src="/images/games/{{game.imagePath}}" class="card-img-top img-fluid" alt="{{game.title}}" style="height: 25rem;">
+            <div class="card-body">
+                <h5 class="card-title" style="height: 3rem">{{game.title}}</h5>
+                <div class="d-flex justify-content-between">
+                    <p class="card-text fw-bold">{{game.price != 0 ? (game.price/100)|number_format(2, ',', ' ') ~ ' €' : 'Gratuit'}}</p>
+                    <a href="/detail/{{game.id}}" class="btn btn-primary">Voir le jeu</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+{% endblock body %}

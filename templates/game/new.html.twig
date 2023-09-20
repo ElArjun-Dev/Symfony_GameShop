@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Création de jeu{% endblock %}
+
+{% block body %}
+
+<h1>Créer un nouveau jeu</h1>
+{% include "game/_form.html.twig" %}
+
+<a class="btn btn-primary" href="{{ path('app_admin')}}"> Retour a la liste</a>
+
+{% endblock %}

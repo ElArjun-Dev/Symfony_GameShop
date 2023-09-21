@@ -1,0 +1,49 @@
+{% set date = game.releaseDate|date('d/m/Y') %}
+
+<div class="card my-3 d-flex flex-row">
+
+	<div>
+
+		<img src="/images/games/{{ game.imagePath }}" alt="{{ game.title }}" class="img-fluid rounded-start-0 p-1" style="width: 350px">
+
+	</div>
+	<div class="col-md-8">
+		<div class="card-body">
+			<h5 class="card-title text-primary">{{ game.title }}</h5>
+			{# on boucle sur les consoles #}
+			<p class="card-text">
+				{% for console in consoles %}
+					<a href="/console/{{console.id}}" class="badge rounded-pill"><span class="badge rounded-pill bg-primary">{{ console.label }}</span></a>
+				{% endfor %}
+			</p>
+			<p class="card-text pt-2">
+				<span class="fw-bold">Synopsis:</span>
+				{{ game.description }}</p>
+			<p class="card-text">
+				<small class="text-muted">Date de sortie:
+					<span class="text-primary fw-bold">{{ date}}</span>
+				</small>
+			</p>
+			<p class="card-text pt-2">
+				<a href="{{path('age', {id: game.ageId}) }}"><img src="/images/pegi/{{game.imgPegi}}" alt="image pegi" class="img-thumbnail img-fluid" style="width: 50px"></a>
+				age:
+				{{game.label}}+
+			</p>
+			<div class="d-flex flex-row justify-content-around">
+				<div class="d-flex align-items-baseline">
+					<p class="text-warning fs-4">&#9733;</p>
+					<p class="card-text">Avis presse:
+						<span class="text-primary fw-bold">{{ game.mediaNote }}</span>
+					</p>
+				</div>
+				<div class="d-flex align-items-baseline">
+					<p class="text-warning fs-4">&#9733;</p>
+					<p class="card-text">Avis utilisateur:
+						<span class="text-primary fw-bold">{{ game.userNote }}</span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

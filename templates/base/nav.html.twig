@@ -61,7 +61,7 @@
 						{# On récupere ici notre fonction twig pour la liste des consoles #}
 						{% for filter in filter_items() %}
 							<li>
-								<a class="dropdown-item" href="{{ path('index', {'field': filter.filter}) }}">{{filter.label}} <i class="{{filter.icon}}"></i></a>
+								<a class="dropdown-item" href="{{ path('games_filter', {'field': filter.filter}) }}">{{filter.label}} <i class="{{filter.icon}}"></i></a>
 							</li>
 						{% endfor %}
 					</ul>

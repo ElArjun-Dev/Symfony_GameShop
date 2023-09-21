@@ -9,10 +9,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     //ici on déclare sa route
-    #[Route('/{field}', name: 'index')]
-    public function index(GameRepository $gameRepository, $field = 'g.id ASC')
+    #[Route('/', name: 'index')]
+    public function index(GameRepository $gameRepository)
     {
+        //on peut déclarer des variables
+        $title = 'Tous les jeux';
+        //variable qui récupere la liste des jeux 
+        $games = $gameRepository->findAll();
 
+        return $this->render('home/index.html.twig', [
+            'title' => $title,
+            'games' => $games
+        ]);
+    }
+
+
+    #[Route('/games/filter/{field}', name: 'games_filter')]
+    public function getByFilter(GameRepository $gameRepository, $field = 'g.id ASC')
+    {
         //on peut déclarer des variables
         $title = 'Tous les jeux';
         //variable qui récupere la liste des jeux 
@@ -65,7 +79,7 @@ class HomeController extends AbstractController
 
         return $this->render('home/index.html.twig', [
             'title' => $title,
-            'games' => $games
+            'games' => $games,
         ]);
     }
 }

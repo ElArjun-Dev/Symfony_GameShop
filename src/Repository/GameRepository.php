@@ -163,6 +163,26 @@ class GameRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    //methode qui recupere une liste de jeux avec des filtres personnalisés
+    public function getGamesByFilter($field)
+    {
+        $entityManager = $this->getEntityManager();
+        $qb = $entityManager->createQueryBuilder();
+        $query = $qb->select([
+            'g.id',
+            'g.title',
+            'g.imagePath',
+            'g.price',
+        ])
+            ->from(Game::class, 'g')
+            ->join('g.note', 'n')
+            ->orderBy($field[0], $field[1])
+            ->getQuery();
+
+
+         return $query->getResult();
+    }
+
 
     //methode pour supprimer un jeu
     public function delete(Game $entity, bool $flush = false)

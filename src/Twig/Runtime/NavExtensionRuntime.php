@@ -32,4 +32,19 @@ class NavExtensionRuntime implements RuntimeExtensionInterface
     {
         return $this->gameRepository->getCountGameByAge();
     }
+
+    public function filterItems()
+    {
+
+        return [
+            ['label' => 'Prix', 'filter' => 'g.price ASC', 'icon' => 'fa-sharp fa-solid fa-arrow-up'],
+            ['label' => 'Prix', 'filter' => 'g.price DESC', 'icon' => 'fa-sharp fa-solid fa-arrow-down'],
+            ['label' => 'Date de sortie', 'filter' => 'g.releaseDate ASC', 'icon' => 'fa-sharp fa-solid fa-arrow-up'],
+            ['label' => 'Date de sortie', 'filter' => 'g.releaseDate DESC', 'icon' => 'fa-sharp fa-solid fa-arrow-down'],
+            ['label' => 'Note de presse', 'filter' => 'n.mediaNote ASC', 'icon' => 'fa-sharp fa-solid fa-arrow-up'],
+            ['label' => 'Note de presse', 'filter' => 'n.mediaNote DESC', 'icon' => 'fa-sharp fa-solid fa-arrow-down'],
+            ['label' => 'Note utilisateur', 'filter' => 'n.mediaNote ASC', 'icon' => 'fa-sharp fa-solid fa-arrow-up'],
+            ['label' => 'Note utilisateur', 'filter' => 'n.mediaNote DESC', 'icon' => 'fa-sharp fa-solid fa-arrow-down'],
+        ];
+    }
 }

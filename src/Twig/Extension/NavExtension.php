@@ -24,6 +24,7 @@ class NavExtension extends AbstractExtension
         return [
             // on crée une fonction qui va se charché de récupérer les consoles d'un jeu 
             new TwigFunction('menu_items', [NavExtensionRuntime::class, 'menuItems']),
+            new TwigFunction('age_items', [NavExtensionRuntime::class, 'ageItems']),
         ];
     }
 }

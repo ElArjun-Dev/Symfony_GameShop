@@ -28,27 +28,6 @@ class GameRepository extends ServiceEntityRepository
         //appel de l'entity manager
         $entityManager = $this->getEntityManager();
 
-        //*************** METHODE REQUETE SQL STANDARD ************
-        //On crée la query 
-        // $query = $entityManager->createQuery(
-        //     'SELECT
-        //     g.id,
-        //     g.title,
-        //     g.description,
-        //     g.imagePath,
-        //     g.price,
-        //     g.releaseDate,
-        //     n.userNote,
-        //     n.mediaNote,
-        //     a.label,
-        //     a.imagePath as imgPegi,
-        //     a.id as ageId
-        //     FROM App\Entity\Game g
-        //     JOIN g.note n
-        //     JOIN g.age a
-        //     WHERE g.id = :id')->setParameter('id', $id);
-        // return $query->getOneOrNullResult();
-
 
 
         // Get the entity manager
@@ -128,6 +107,20 @@ class GameRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    //methode qui recupere tout les age avec le nombre d ejeux associés
+    public function getCountGameByAge()
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT a.label, a.id, a.imagePath, COUNT(g.id) as total
+            FROM Game::class g
+            JOIN g.age a
+            GROUP BY a.id'
+        );
+
+        return $query->getResult();
+    }
+
     public function getGamesByConsole($id)
     {
         $entityManager = $this->getEntityManager();
@@ -149,7 +142,7 @@ class GameRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    
+
     //methode pour supprimer un jeu
     public function delete(Game $entity, bool $flush = false)
     {
@@ -163,8 +156,8 @@ class GameRepository extends ServiceEntityRepository
     public function save(Game $entity, bool $flush = false)
     {
         $this->getEntityManager()->persist($entity);
-        
-        if($flush){
+
+        if ($flush) {
             $this->getEntityManager()->flush();
         }
     }

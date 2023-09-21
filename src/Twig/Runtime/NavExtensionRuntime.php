@@ -11,9 +11,10 @@ class NavExtensionRuntime implements RuntimeExtensionInterface
     private $gameRepository;
 
 
+
     public function __construct(GameRepository $gameRepository)
     {
-       $this->gameRepository = $gameRepository;
+        $this->gameRepository = $gameRepository;
     }
 
     public function doSomething($value)
@@ -25,5 +26,10 @@ class NavExtensionRuntime implements RuntimeExtensionInterface
     {
         // on peut mintenant appeler la méthode getCountGameByConsole
         return $this->gameRepository->getCountGameByConsole();
+    }
+
+    public function ageItems()
+    {
+        return $this->gameRepository->getCountGameByAge();
     }
 }

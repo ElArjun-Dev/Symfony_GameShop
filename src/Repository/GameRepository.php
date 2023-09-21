@@ -113,7 +113,7 @@ class GameRepository extends ServiceEntityRepository
         $entityManager = $this->getEntityManager();
         $query = $entityManager->createQuery(
             'SELECT a.label, a.id, a.imagePath, COUNT(g.id) as total
-            FROM Game::class g
+            FROM App\Entity\Game g
             JOIN g.age a
             GROUP BY a.id'
         );
@@ -135,6 +135,27 @@ class GameRepository extends ServiceEntityRepository
             ->from(Game::class, 'g')
             ->join('g.consoles', 'c')
             ->where('c.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery();
+
+        // Execute the query and return the result
+        return $query->getResult();
+    }
+
+    public function getGamesByAge($id)
+    {
+        $entityManager = $this->getEntityManager();
+        $qb = $entityManager->createQueryBuilder();
+        $query = $qb->select([
+            'g.id',
+            'a.label',
+            'g.title',
+            'g.imagePath',
+            'g.price',
+        ])
+            ->from(Game::class, 'g')
+            ->join('g.age', 'a')
+            ->where('a.id = :id')
             ->setParameter('id', $id)
             ->getQuery();
 

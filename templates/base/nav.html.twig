@@ -44,10 +44,10 @@
 					<ul
 						class="dropdown-menu">
 						{# On récupere ici notre fonction twig pour la liste des consoles #}
-						{% for nav in menu_items() %}
+						{% for age in age_items() %}
 							<li>
-								<a class="dropdown-item" href="/console/{{nav.id}}">{{nav.label}}
-									({{nav.total}})</a>
+								<a class="dropdown-item" href="/age/{{age.id}}">
+									 <img src="/images/pegi/{{age.imagePath}}" alt="" style="height: 30px;"><span class="text-muted"> ({{age.total}})</span></a>
 							</li>
 						{% endfor %}
 					</ul>

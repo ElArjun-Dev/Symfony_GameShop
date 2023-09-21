@@ -75,11 +75,12 @@ class HomeController extends AbstractController
     public function gameByAge(GameRepository $gameRepository, int $id)
     {
         $games = $gameRepository->getGamesByAge($id);
-        $title = $games[0]['label'] . ' +';
+        $title = 'Tous les jeux: ';
 
         return $this->render('home/index.html.twig', [
             'title' => $title,
             'games' => $games,
+            'page' => 'age'
         ]);
     }
 }

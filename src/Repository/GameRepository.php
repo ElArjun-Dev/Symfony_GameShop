@@ -150,6 +150,7 @@ class GameRepository extends ServiceEntityRepository
             'g.id',
             'a.label',
             'g.title',
+            'a.imagePath as imgPegi',
             'g.imagePath',
             'g.price',
         ])

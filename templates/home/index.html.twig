@@ -2,11 +2,21 @@
 {% extends 'base.html.twig' %}
 {# on peut redifinir le titre de la page #}
 {% block title %}
+	{{ title|raw }}
 {% endblock %}
 {# On ouvre le bloxk body #}
 
 
 {% block body %}
+
+{% if page is defined %}
+
+<h2>
+<img src="/images/pegi/{{games[0].imgPegi}}" style="width: 50px">
+</h2>
+
+{% endif %}
+
 
 
 	<h1 class="text-warning text-center my-4">{{title}}</h1>
